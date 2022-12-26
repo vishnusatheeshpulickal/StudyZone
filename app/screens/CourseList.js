@@ -31,6 +31,17 @@ function CourseList({ img, title, bg, onPress }) {
           10 hours, 19 lessons
         </Text>
       </View>
+      <Text
+        style={{
+          color: "#345c74",
+          fontSize: 13,
+          paddingLeft: 10,
+          paddingRight: 10,
+        }}
+      >
+        25%
+      </Text>
+      {/* progress */}
     </TouchableOpacity>
   );
 }

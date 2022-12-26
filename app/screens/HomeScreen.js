@@ -135,7 +135,21 @@ function HomeScreen() {
         >
           Courses in progress
         </Text>
-        <CourseList />
+        <CourseList
+          img={require("../assets/xd.png")}
+          title='Adobe xd'
+          bg='#fdddf3'
+        />
+        <CourseList
+          img={require("../assets/sketch.png")}
+          title='Sketch'
+          bg='#fef8e3'
+        />
+        <CourseList
+          img={require("../assets/ae.png")}
+          title='After Effect'
+          bg='#fcf2ff'
+        />
       </ScrollView>
     </ImageBackground>
   );
