@@ -13,7 +13,7 @@ import { Modalize } from "react-native-modalize";
 import CourseList from "./CourseList";
 
 function Courses() {
-  const modalRef = React.createRef();
+  // const modalRef = React.createRef();
 
   return (
     <ImageBackground
