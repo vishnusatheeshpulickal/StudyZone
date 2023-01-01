@@ -22,7 +22,7 @@ function Chapters({ title, duration, percent, color, onPress, num }) {
           borderRadius: 6,
         }}
       >
-        <Text style={{ fontSize: 10 }}>1</Text>
+        <Text style={{ fontSize: 10 }}>{num}</Text>
       </View>
       <View>
         <Text
