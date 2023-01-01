@@ -8,6 +8,8 @@ import {
 } from "react-native";
 import { Modalize } from "react-native-modalize";
 
+import Chapters from "./Chapters";
+
 function Xd() {
   return (
     <ImageBackground
@@ -110,7 +112,61 @@ function Xd() {
             <Image source={require("../assets/a2.png")} />
           </View>
         </View>
-        <View></View>
+        <View>
+          <Chapters
+            num={1}
+            color='#fde6e6'
+            percent='25'
+            duration='2 hrs'
+            title='introduction'
+            onPress={() => console.log("chapter 1")}
+          />
+          <Chapters
+            num={2}
+            color='#f9e1fc'
+            percent='25'
+            duration='2 hrs'
+            title='introduction'
+          />
+          <Chapters
+            num={3}
+            color='#fde6e6'
+            percent='25'
+            duration='2 hrs'
+            title='introduction'
+          />
+          <Chapters
+            num={4}
+            color='#fde6e6'
+            percent='25'
+            duration='2 hrs'
+            title='introduction'
+          />
+          <Chapters
+            num={5}
+            color='#fde6e6'
+            percent='25'
+            duration='2 hrs'
+            title='introduction'
+          />
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            paddingVertical: 5,
+            backgroundColor: "#fff2f2",
+            marginHorizontal: 20,
+            paddingVertical: 15,
+            alignItems: "center",
+            borderRadius: 10,
+            justifyContent: "center",
+          }}
+        >
+          <Text style={{ color: "#f58084", fontSize: 13, marginRight: 50 }}>
+            Resume last lession
+          </Text>
+          <Image source={require("../assets/a2.png")} />
+        </View>
       </Modalize>
     </ImageBackground>
   );
