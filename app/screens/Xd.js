@@ -17,7 +17,12 @@ function Xd() {
       style={{ width: "100%", height: "100%" }}
     >
       <View
-        style={{ flexDirection: "row", width: "100%", paddingHorizontal: 20 }}
+        style={{
+          flexDirection: "row",
+          width: "100%",
+          paddingHorizontal: 20,
+          paddingTop: 20,
+        }}
       >
         <TouchableOpacity
           onPress={() => console.log("pressed!")}
@@ -86,7 +91,7 @@ function Xd() {
           style={{ flexDirection: "row", marginHorizontal: 30, marginTop: 40 }}
         >
           <Image
-            source={require("../assets/2.jpg")}
+            source={require("../assets/a2.png")}
             style={{
               height: 50,
               width: 50,

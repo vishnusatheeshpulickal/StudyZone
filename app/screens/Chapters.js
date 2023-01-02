@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import Chapters from "./Chapters";
 
 function Chapters({ title, duration, percent, color, onPress, num }) {
   return (

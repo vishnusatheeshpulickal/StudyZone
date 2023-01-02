@@ -9,6 +9,7 @@ import {
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 // import ProgressCircle from "react-native-progress-circle";
 
+import Card from "../components/Card";
 import CourseList from "./CourseList";
 
 function HomeScreen() {
@@ -124,7 +125,7 @@ function HomeScreen() {
           />
         </View>
         <Text
-          Style={{
+          style={{
             color: "#345c74",
             fontSize: 20,
             paddingHorizontal: 20,
@@ -150,6 +151,48 @@ function HomeScreen() {
           title='After Effect'
           bg='#fcf2ff'
         />
+
+        <CourseList
+          img={require("../assets/ae.png")}
+          title='After Effect'
+          bg='#fcf2ff'
+        />
+
+        <Text
+          style={{
+            color: "#345c74",
+            fontSize: 20,
+            paddingHorizontal: 20,
+            marginTop: 20,
+            marginBottom: 10,
+            fontWeight: "800",
+          }}
+        >
+          Available Courses
+        </Text>
+
+        <Card
+          title='React'
+          description='React is a free and open-source front-end JavaScript library for
+        building user interfaces based on UI components.'
+        />
+        <Card
+          title='React'
+          description='React is a free and open-source front-end JavaScript library for
+        building user interfaces based on UI components.'
+        />
+        <Card
+          title='React'
+          description='React is a free and open-source front-end JavaScript library for
+        building user interfaces based on UI components.'
+        />
+        {/* <TouchableOpacity
+          style={{
+            borderRadius: 20,
+            marginHorizontal: 20,
+          }}
+        > */}
+        {/* </TouchableOpacity> */}
       </ScrollView>
     </ImageBackground>
   );
