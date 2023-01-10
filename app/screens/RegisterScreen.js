@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, Image } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
 
 import Screen from "../components/Screen";
 import AppTextInput from "../components/AppTextInput";
@@ -15,12 +16,23 @@ const validationSchema = Yup.object().shape({
 });
 
 function RegisterScreen() {
+  async function register({ name, email, password }) {
+    axios
+      .post("https://elearning-v6l2.onrender.com/api/v1/common/register", {
+        name,
+        email,
+        password,
+      })
+      .then((res) => console.log(res.data.message))
+      .catch((e) => console.log(e));
+  }
+
   return (
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require("../assets/logo.png")} />
       <Formik
         initialValues={{ name: "", email: "", password: "" }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => register(values)}
         validationSchema={validationSchema}
       >
         {({ handleChange, handleSubmit, errors }) => (

@@ -10,12 +10,12 @@ import {
 import { Video } from "expo-av";
 import { ScrollView } from "react-native-gesture-handler";
 
-import Chapters from "./Chapters";
 import ContentPoints from "../components/ContentPoints";
+import PurchaseButton from "../components/PurchaseButton";
 
 const { width, height } = Dimensions.get("window");
 
-function CourseDetailed() {
+function CourseDetailed({ id }) {
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -72,6 +72,16 @@ function CourseDetailed() {
           />
         </View>
 
+        <View style={{ marginTop: 20 }}>
+          <Text style={styles.contents}>
+            By the end of this course, you'll be able to…
+          </Text>
+          <ContentPoints description={"chapter 1"} icon={"check"} />
+          <ContentPoints description={"chapter 1"} icon={"check"} />
+          <ContentPoints description={"chapter 1"} icon={"check"} />
+          <ContentPoints description={"chapter 1"} icon={"check"} />
+        </View>
+
         <View style={styles.moneyback}>
           <Text style={styles.moneybackTitle}>30-Day Money-Back Guarantee</Text>
           <Text style={styles.moneybackSubtitle}>Try it risk-free</Text>
@@ -86,24 +96,7 @@ function CourseDetailed() {
             style={styles.moneybacklogo}
           />
         </View>
-        <View
-          style={{
-            flexDirection: "row",
-            paddingVertical: 5,
-            backgroundColor: "#f58084",
-            marginHorizontal: 40,
-            paddingVertical: 15,
-            alignItems: "center",
-            borderRadius: 10,
-            justifyContent: "center",
-            marginTop: 20,
-          }}
-        >
-          <Text style={{ color: "#fff", fontSize: 15, marginRight: 50 }}>
-            Read more
-          </Text>
-          <Image source={require("../assets/a3.png")} />
-        </View>
+        <PurchaseButton title={"Enroll Now"} />
       </ScrollView>
     </View>
   );

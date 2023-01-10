@@ -10,17 +10,19 @@ import WelcomeScreen from "./app/screens/WelcomeScreen";
 import CourseList from "./app/screens/CourseList";
 import Card from "./app/components/Card";
 import CourseDetailed from "./app/screens/CourseDetailed";
+import RegisterScreen from "./app/screens/RegisterScreen";
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       {/* {<Courses />} */}
-      {/* <RegisterScreen /> */}
+      <RegisterScreen />
       {/* <VideoPage /> */}
       {/* <Xd /> */}
       {/* <HomeScreen /> */}
       {/* <CourseList /> */}
-      <CourseDetailed />
+      {/* <CourseDetailed /> */}
+      {/* <RegisterScreen /> */}
     </SafeAreaView>
   );
 }
