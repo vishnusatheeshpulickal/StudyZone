@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,12 +7,22 @@ import {
   Image,
 } from "react-native";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
+import axios from "axios";
 // import ProgressCircle from "react-native-progress-circle";
 
 import Card from "../components/Card";
 import CourseList from "./CourseList";
 
 function HomeScreen() {
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://elearning-v6l2.onrender.com/api/v1/course/allCourses")
+      .then((res) => console.log(res))
+      .catch((e) => console.log(e));
+  });
+
   return (
     <ImageBackground
       source={require("../assets/Home.png")}

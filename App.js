@@ -11,12 +11,16 @@ import CourseList from "./app/screens/CourseList";
 import Card from "./app/components/Card";
 import CourseDetailed from "./app/screens/CourseDetailed";
 import RegisterScreen from "./app/screens/RegisterScreen";
+import LoginScreen from "./app/screens/LoginScreen";
+import LoaderScreen from "./app/screens/LoaderScreen";
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       {/* {<Courses />} */}
-      <RegisterScreen />
+      {/* <RegisterScreen /> */}
+      {/* <LoginScreen /> */}
+      <LoaderScreen />
       {/* <VideoPage /> */}
       {/* <Xd /> */}
       {/* <HomeScreen /> */}
