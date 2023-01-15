@@ -8,6 +8,7 @@ import Screen from "../components/Screen";
 import AppTextInput from "../components/AppTextInput";
 import AppButton from "../components/Button";
 import ErrorMessage from "../components/ErrorMessage";
+import SuccessScreen from "./SuccessScreen";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name").min(2),
@@ -23,7 +24,10 @@ function RegisterScreen() {
         email,
         password,
       })
-      .then((res) => console.log(res.data.message))
+      .then((res) => {
+        if (res.status === 200) return <SuccessScreen />;
+        // console.log(res.status);
+      })
       .catch((e) => console.log(e));
   }
 

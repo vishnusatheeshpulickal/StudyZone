@@ -13,14 +13,16 @@ import CourseDetailed from "./app/screens/CourseDetailed";
 import RegisterScreen from "./app/screens/RegisterScreen";
 import LoginScreen from "./app/screens/LoginScreen";
 import LoaderScreen from "./app/screens/LoaderScreen";
+import SuccessScreen from "./app/screens/SuccessScreen";
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
+      <SuccessScreen />
       {/* {<Courses />} */}
       {/* <RegisterScreen /> */}
       {/* <LoginScreen /> */}
-      <LoaderScreen />
+      {/* <LoaderScreen /> */}
       {/* <VideoPage /> */}
       {/* <Xd /> */}
       {/* <HomeScreen /> */}
