@@ -19,10 +19,9 @@ function HomeScreen() {
   useEffect(() => {
     axios
       .get("https://elearning-v6l2.onrender.com/api/v1/course/allCourses")
-      .then((res) => console.log(res))
+      .then((res) => setCourses(res.data.data))
       .catch((e) => console.log(e));
   });
-
   return (
     <ImageBackground
       source={require("../assets/Home.png")}
@@ -134,39 +133,41 @@ function HomeScreen() {
             style={{ marginLeft: -80, marginTop: 35 }}
           />
         </View>
-        <Text
-          style={{
-            color: "#345c74",
-            fontSize: 20,
-            paddingHorizontal: 20,
-            marginTop: 20,
-            marginBottom: 10,
-            fontWeight: "800",
-          }}
-        >
-          Courses in progress
-        </Text>
-        <CourseList
-          img={require("../assets/xd.png")}
-          title='Adobe xd'
-          bg='#fdddf3'
-        />
-        <CourseList
-          img={require("../assets/sketch.png")}
-          title='Sketch'
-          bg='#fef8e3'
-        />
-        <CourseList
-          img={require("../assets/ae.png")}
-          title='After Effect'
-          bg='#fcf2ff'
-        />
+        <View>
+          <Text
+            style={{
+              color: "#345c74",
+              fontSize: 20,
+              paddingHorizontal: 20,
+              marginTop: 20,
+              marginBottom: 10,
+              fontWeight: "800",
+            }}
+          >
+            Courses in progress
+          </Text>
+          <CourseList
+            img={require("../assets/xd.png")}
+            title='Adobe xd'
+            bg='#fdddf3'
+          />
+          <CourseList
+            img={require("../assets/sketch.png")}
+            title='Sketch'
+            bg='#fef8e3'
+          />
+          <CourseList
+            img={require("../assets/ae.png")}
+            title='After Effect'
+            bg='#fcf2ff'
+          />
 
-        <CourseList
-          img={require("../assets/ae.png")}
-          title='After Effect'
-          bg='#fcf2ff'
-        />
+          <CourseList
+            img={require("../assets/ae.png")}
+            title='After Effect'
+            bg='#fcf2ff'
+          />
+        </View>
 
         <Text
           style={{

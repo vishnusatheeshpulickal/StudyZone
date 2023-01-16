@@ -21,16 +21,18 @@ export default function App() {
   const Stack = createNativeStackNavigator();
   return (
     <SafeAreaView style={styles.container}>
-      {/* <NavigationContainer>
+      <NavigationContainer>
         <Stack.Navigator initialRouteName='Start'>
-          <Stack.Screen component={LoaderScreen} name='Start' />
+          <Stack.Screen component={LoaderScreen} name='Start'></Stack.Screen>
+          <Stack.Screen component={WelcomeScreen} name='Welcome'></Stack.Screen>
+          <Stack.Screen component={HomeScreen} name='Home'></Stack.Screen>
         </Stack.Navigator>
-      </NavigationContainer> */}
+      </NavigationContainer>
       {/* <SuccessScreen /> */}
       {/* {<Courses />} */}
       {/* <RegisterScreen /> */}
       {/* <LoginScreen /> */}
-      <LoaderScreen />
+      {/* <LoaderScreen /> */}
       {/* <LoaderScreen /> */}
       {/* <VideoPage /> */}
       {/* <Xd /> */}

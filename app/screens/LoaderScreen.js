@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { getToken } from "../config/store";
 
-const LoadingScreen = () => {
+const LoadingScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(async () => {
@@ -19,7 +19,8 @@ const LoadingScreen = () => {
     // }
     // start();
     const token = await getToken();
-    console.log(token);
+    if (token == null) return navigation.navigate("Welcome");
+    else return navigation.navigate("Home");
     setTimeout(() => {
       setIsLoading(false);
     }, 120000);
