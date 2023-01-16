@@ -25,6 +25,7 @@ function LoginScreen() {
       })
       .then((res) => {
         storeToken(res.data.token);
+        console.log(res.data);
       })
       .catch((e) => console.log(e));
   }

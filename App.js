@@ -1,5 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import HomeScreen from "./app/screens/HomeScreen";
 import Courses from "./app/screens/Courses";
@@ -16,12 +18,19 @@ import LoaderScreen from "./app/screens/LoaderScreen";
 import SuccessScreen from "./app/screens/SuccessScreen";
 
 export default function App() {
+  const Stack = createNativeStackNavigator();
   return (
     <SafeAreaView style={styles.container}>
-      <SuccessScreen />
+      {/* <NavigationContainer>
+        <Stack.Navigator initialRouteName='Start'>
+          <Stack.Screen component={LoaderScreen} name='Start' />
+        </Stack.Navigator>
+      </NavigationContainer> */}
+      {/* <SuccessScreen /> */}
       {/* {<Courses />} */}
       {/* <RegisterScreen /> */}
       {/* <LoginScreen /> */}
+      <LoaderScreen />
       {/* <LoaderScreen /> */}
       {/* <VideoPage /> */}
       {/* <Xd /> */}

@@ -1,13 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { View, Image, ActivityIndicator } from "react-native";
+import axios from "axios";
+
+import { getToken } from "../config/store";
 
 const LoadingScreen = () => {
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
+  useEffect(async () => {
+    // async function start() {
+    //   axios
+    //     .get("")
+    //     .then((res) => {
+    //       console.log("Started!");
+    //       // setIsLoading(false);
+    //     })
+    //     .catch((err) => console.log(err));
+    // }
+    // start();
+    const token = await getToken();
+    console.log(token);
     setTimeout(() => {
       setIsLoading(false);
     }, 120000);
+    // setIsLoading(false);
   }, []);
 
   if (isLoading) {

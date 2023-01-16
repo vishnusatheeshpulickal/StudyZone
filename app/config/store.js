@@ -1,27 +1,16 @@
-async function storeToken(user) {
-  try {
-    await AsyncStorage.setItem("userToken", user);
-  } catch (error) {
-    console.log("Something went wrong", error);
+import * as SecureStore from "expo-secure-store";
+
+async function storeToken(token) {
+  await SecureStore.setItemAsync("Token", token);
+}
+
+async function getToken() {
+  let result = await SecureStore.getItemAsync("Token");
+  if (result) {
+    return result;
+  } else {
+    return null;
   }
 }
 
-async function storeName(user) {
-  try {
-    await AsyncStorage.setItem("userName", user);
-  } catch (error) {
-    console.log("Something went wrong", error);
-  }
-}
-
-async function getToken(user) {
-  try {
-    let userData = await AsyncStorage.getItem("userData");
-    let data = JSON.parse(userData);
-    console.log(data);
-  } catch (error) {
-    console.log("Something went wrong", error);
-  }
-}
-
-module.exports = { storeToken, getToken, storeName };
+module.exports = { storeToken, getToken };
