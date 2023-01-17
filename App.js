@@ -16,6 +16,7 @@ import RegisterScreen from "./app/screens/RegisterScreen";
 import LoginScreen from "./app/screens/LoginScreen";
 import LoaderScreen from "./app/screens/LoaderScreen";
 import SuccessScreen from "./app/screens/SuccessScreen";
+import MainScreen from "./app/screens/MainScreen";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -23,11 +24,34 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Start'>
-          <Stack.Screen component={LoaderScreen} name='Start'></Stack.Screen>
-          <Stack.Screen component={WelcomeScreen} name='Welcome'></Stack.Screen>
-          <Stack.Screen component={HomeScreen} name='Home'></Stack.Screen>
+          <Stack.Screen
+            component={LoaderScreen}
+            name='Start'
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            component={WelcomeScreen}
+            name='Welcome'
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            component={MainScreen}
+            name='Home'
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            component={LoginScreen}
+            name='Login'
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            component={RegisterScreen}
+            name='Register'
+          />
         </Stack.Navigator>
       </NavigationContainer>
+      {/* <MainScreen /> */}
       {/* <SuccessScreen /> */}
       {/* {<Courses />} */}
       {/* <RegisterScreen /> */}

@@ -17,7 +17,10 @@ const validationSchema = Yup.object().shape({
 });
 
 function RegisterScreen() {
+  const [loading, setLoading] = useState(false);
+
   async function register({ name, email, password }) {
+    setLoading(true);
     axios
       .post("https://elearning-v6l2.onrender.com/api/v1/common/register", {
         name,
@@ -70,7 +73,11 @@ function RegisterScreen() {
               textContentType='password'
             />
             <ErrorMessage error={errors.password} />
-            <AppButton title='Register' onPress={handleSubmit} />
+            <AppButton
+              title='Register'
+              onPress={handleSubmit}
+              loading={loading}
+            />
           </>
         )}
       </Formik>

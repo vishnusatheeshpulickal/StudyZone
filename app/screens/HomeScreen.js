@@ -19,7 +19,10 @@ function HomeScreen() {
   useEffect(() => {
     axios
       .get("https://elearning-v6l2.onrender.com/api/v1/course/allCourses")
-      .then((res) => setCourses(res.data.data))
+      .then((res) => {
+        setCourses(res.data.data);
+        console.log(courses);
+      })
       .catch((e) => console.log(e));
   });
   return (

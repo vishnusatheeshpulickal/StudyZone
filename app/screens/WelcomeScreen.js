@@ -16,8 +16,19 @@ function WelcomeScreen(props) {
         <Text style={styles.tagLine}>Learn in a matter of days</Text>
       </View>
       <View style={styles.buttonContainer}>
-        <AppButton title={"login"} />
-        <AppButton title={"register"} color='secondary' />
+        <AppButton
+          title={"login"}
+          onClick={() => {
+            return navigation.navigate("Login");
+          }}
+        />
+        <AppButton
+          title={"register"}
+          color='secondary'
+          onClick={() => {
+            return navigation.navigate("Register");
+          }}
+        />
       </View>
     </ImageBackground>
   );

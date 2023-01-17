@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Image } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -17,7 +17,10 @@ const validationSchema = Yup.object().shape({
 });
 
 function LoginScreen() {
+  const [loading, setLoading] = useState(false);
+
   async function login({ email, password }) {
+    setLoading(true);
     axios
       .post("https://elearning-v6l2.onrender.com/api/v1/common/login", {
         email,
@@ -59,7 +62,7 @@ function LoginScreen() {
               textContentType='password'
             />
             <ErrorMessage error={errors.password} />
-            <AppButton title='Login' onPress={handleSubmit} />
+            <AppButton title='Login' onPress={handleSubmit} loading={loading} />
           </>
         )}
       </Formik>
