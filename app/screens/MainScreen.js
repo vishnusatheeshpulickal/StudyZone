@@ -10,6 +10,8 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 // import navigation from "./rootNavigation";
 // import useNotifications from "../hooks/useNotifications";
 import HomeScreen from "./HomeScreen";
+import ProfileScreen from "./ProfileScreen";
+import LogoutAlert from "./../components/LogoutAlert";
 
 const Tab = createBottomTabNavigator();
 
@@ -28,8 +30,35 @@ const AppNavigator = () => {
           headerShown: false,
         }}
       />
+
+      {/* For tem purpose, want to change this in future */}
+      <Tab.Screen
+        name='My Courses'
+        component={LogoutAlert}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name='play-circle-outline'
+              color={color}
+              size={size}
+            />
+          ),
+          headerShown: false,
+        }}
+      />
+
+      <Tab.Screen
+        name='Profile'
+        component={ProfileScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name='account' color={color} size={size} />
+          ),
+          //   headerShown: false,
+        }}
+      />
       {/* <Tab.Screen
-        name='ListingEdit'
+        name='Logout'
         component={ListingEditScreen}
         options={({ navigation }) => ({
           tabBarButton: () => (

@@ -13,4 +13,13 @@ async function getToken() {
   }
 }
 
-module.exports = { storeToken, getToken };
+async function deleteToken() {
+  let result = await SecureStore.deleteItemAsync("Token");
+  if (result) {
+    return result;
+  } else {
+    return null;
+  }
+}
+
+module.exports = { storeToken, getToken, deleteToken };

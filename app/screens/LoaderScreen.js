@@ -20,10 +20,7 @@ const LoadingScreen = ({ navigation }) => {
     // start();
     const token = await getToken();
     if (token == null) return navigation.navigate("Welcome");
-    else return navigation.navigate("Home");
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 120000);
+    else return navigation.navigate("Main");
     // setIsLoading(false);
   }, []);
 

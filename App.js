@@ -17,6 +17,7 @@ import LoginScreen from "./app/screens/LoginScreen";
 import LoaderScreen from "./app/screens/LoaderScreen";
 import SuccessScreen from "./app/screens/SuccessScreen";
 import MainScreen from "./app/screens/MainScreen";
+import LogoutAlert from "./app/components/LogoutAlert";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -37,7 +38,7 @@ export default function App() {
           <Stack.Screen
             options={{ headerShown: false }}
             component={MainScreen}
-            name='Home'
+            name='Main'
           />
           <Stack.Screen
             options={{ headerShown: false }}
@@ -48,6 +49,11 @@ export default function App() {
             options={{ headerShown: false }}
             component={RegisterScreen}
             name='Register'
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            component={LogoutAlert}
+            name='Logout'
           />
         </Stack.Navigator>
       </NavigationContainer>

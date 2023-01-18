@@ -16,7 +16,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().label("Password").min(4),
 });
 
-function LoginScreen() {
+function LoginScreen({ navigation }) {
   const [loading, setLoading] = useState(false);
 
   async function login({ email, password }) {
@@ -28,6 +28,7 @@ function LoginScreen() {
       })
       .then((res) => {
         storeToken(res.data.token);
+        navigation.navigate("Main");
         console.log(res.data);
       })
       .catch((e) => console.log(e));
