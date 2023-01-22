@@ -9,9 +9,8 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 // import routes from "./routes";
 // import navigation from "./rootNavigation";
 // import useNotifications from "../hooks/useNotifications";
-import HomeScreen from "./HomeScreen";
+import HomeScreenMain from "./HomeScreenMain";
 import ProfileScreen from "./ProfileScreen";
-import LogoutAlert from "./../components/LogoutAlert";
 
 const Tab = createBottomTabNavigator();
 
@@ -21,8 +20,8 @@ const AppNavigator = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name='Home'
-        component={HomeScreen}
+        name='HomeScreen'
+        component={HomeScreenMain}
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name='home' color={color} size={size} />
@@ -34,7 +33,7 @@ const AppNavigator = () => {
       {/* For tem purpose, want to change this in future */}
       <Tab.Screen
         name='My Courses'
-        component={LogoutAlert}
+        component={ProfileScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons

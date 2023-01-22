@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   StatusBar,
@@ -9,13 +9,28 @@ import {
 } from "react-native";
 import { Video } from "expo-av";
 import { ScrollView } from "react-native-gesture-handler";
+import axios from "axios";
 
 import ContentPoints from "../components/ContentPoints";
 import PurchaseButton from "../components/PurchaseButton";
 
 const { width, height } = Dimensions.get("window");
 
-function CourseDetailed({ id }) {
+function CourseDetailed({ route }) {
+  const [course, setCourse] = useState();
+  useEffect(() => {
+    axios
+      .get(
+        `https://elearning-v6l2.onrender.com/api/v1/course/${route.params.id}`
+      )
+      .then((res) => {
+        setCourse(res.data.data);
+        console.log("datas", course);
+      })
+      .catch((e) => console.log(e));
+  }, []);
+
+  console.log(route.params.id);
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -30,15 +45,9 @@ function CourseDetailed({ id }) {
           useNativeControls
           style={styles.video}
         />
-        <Text style={styles.title}>React</Text>
+        <Text style={styles.title}>{course.name}</Text>
 
-        <Text style={styles.description}>
-          More often than not, you will need to make network requests to an API
-          when building a web or mobile application. You can make these network
-          requests to authenticate a user, update a resource, or retrieve a
-          resource from your own server or third party APIs. The Fetch API comes
-          in handy if you want to make API requests in a browser environment.
-        </Text>
+        <Text style={styles.description}>{course.description}</Text>
 
         <Text style={styles.contents}>What You'l Learn...</Text>
         <ContentPoints description={"chapter 1"} icon={"check"} />

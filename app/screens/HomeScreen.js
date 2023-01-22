@@ -8,13 +8,20 @@ import {
 } from "react-native";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import axios from "axios";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+
+import CourseDetailed from "./CourseDetailed";
+
 // import ProgressCircle from "react-native-progress-circle";
 
 import Card from "../components/Card";
 import CourseList from "./CourseList";
 
-function HomeScreen() {
+function HomeScreen({ navigation }) {
   const [courses, setCourses] = useState([]);
+
+  // const navigation = useNavigation();
 
   useEffect(() => {
     axios
@@ -24,7 +31,8 @@ function HomeScreen() {
         console.log(courses);
       })
       .catch((e) => console.log(e));
-  });
+  }, []);
+
   return (
     <ImageBackground
       source={require("../assets/Home.png")}
@@ -149,11 +157,7 @@ function HomeScreen() {
           >
             Courses in progress
           </Text>
-          <CourseList
-            img={require("../assets/xd.png")}
-            title='Adobe xd'
-            bg='#fdddf3'
-          />
+
           <CourseList
             img={require("../assets/sketch.png")}
             title='Sketch'
@@ -185,21 +189,19 @@ function HomeScreen() {
           Available Courses
         </Text>
 
-        <Card
-          title='React'
-          description='React is a free and open-source front-end JavaScript library for
-        building user interfaces based on UI components.'
-        />
-        <Card
-          title='React'
-          description='React is a free and open-source front-end JavaScript library for
-        building user interfaces based on UI components.'
-        />
-        <Card
-          title='React'
-          description='React is a free and open-source front-end JavaScript library for
-        building user interfaces based on UI components.'
-        />
+        {courses.map((course) => (
+          <Card
+            // onPress={() => navigation.navigate("Course", { id: course._id })}
+            onPress={() => navigation.navigate("Course", { id: course._id })}
+            id={course._id}
+            title={course.name}
+            description={
+              course.description.length > 125
+                ? course.description.substring(0, 125) + "\n..."
+                : course.description
+            }
+          />
+        ))}
         {/* <TouchableOpacity
           style={{
             borderRadius: 20,
