@@ -1,15 +1,25 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, Text } from "react-native";
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  ActivityIndicator,
+} from "react-native";
 
 import colors from "../config/colors";
 
-function PurchaseButton({ title, onPress, color = "primary" }) {
+function PurchaseButton({ title, onPress, color = "primary", loading }) {
   return (
     <TouchableOpacity
       style={[styles.button, { backgroundColor: colors[color] }]}
       onPress={onPress}
+      disabled={loading}
     >
-      <Text style={styles.text}>{title}</Text>
+      {loading ? (
+        <ActivityIndicator size='small' color='#fff' />
+      ) : (
+        <Text style={styles.text}>{title}</Text>
+      )}
     </TouchableOpacity>
   );
 }

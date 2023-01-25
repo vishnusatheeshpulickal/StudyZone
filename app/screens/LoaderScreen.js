@@ -8,16 +8,16 @@ const LoadingScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(async () => {
-    // async function start() {
-    //   axios
-    //     .get("")
-    //     .then((res) => {
-    //       console.log("Started!");
-    //       // setIsLoading(false);
-    //     })
-    //     .catch((err) => console.log(err));
-    // }
-    // start();
+    async function start() {
+      axios
+        .get("https://elearning-v6l2.onrender.com/api/v1/user/start")
+        .then((res) => {
+          console.log("Started!");
+          setIsLoading(false);
+        })
+        .catch((err) => console.log(err));
+    }
+    start();
     const token = await getToken();
     if (token == null) return navigation.navigate("Welcome");
     else return navigation.navigate("Main");

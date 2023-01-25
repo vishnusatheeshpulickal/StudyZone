@@ -11,6 +11,8 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 // import useNotifications from "../hooks/useNotifications";
 import HomeScreenMain from "./HomeScreenMain";
 import ProfileScreen from "./ProfileScreen";
+import CourseList from "./CourseList";
+import EnrolledCoursesScreen from "./EnrolledCoursesScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -33,7 +35,7 @@ const AppNavigator = () => {
       {/* For tem purpose, want to change this in future */}
       <Tab.Screen
         name='My Courses'
-        component={ProfileScreen}
+        component={EnrolledCoursesScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
@@ -42,7 +44,7 @@ const AppNavigator = () => {
               size={size}
             />
           ),
-          headerShown: false,
+          headerShown: true,
         }}
       />
 

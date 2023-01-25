@@ -10,6 +10,7 @@ import { ScrollView, TextInput } from "react-native-gesture-handler";
 import axios from "axios";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import Spinner from "react-native-loading-spinner-overlay";
 
 import CourseDetailed from "./CourseDetailed";
 
@@ -20,6 +21,7 @@ import CourseList from "./CourseList";
 
 function HomeScreen({ navigation }) {
   const [courses, setCourses] = useState([]);
+  const [isLoading, isSetLoading] = useState(true);
 
   // const navigation = useNavigation();
 
@@ -28,6 +30,7 @@ function HomeScreen({ navigation }) {
       .get("https://elearning-v6l2.onrender.com/api/v1/course/allCourses")
       .then((res) => {
         setCourses(res.data.data);
+        isSetLoading(false);
         console.log(courses);
       })
       .catch((e) => console.log(e));
@@ -188,20 +191,22 @@ function HomeScreen({ navigation }) {
         >
           Available Courses
         </Text>
-
-        {courses.map((course) => (
-          <Card
-            // onPress={() => navigation.navigate("Course", { id: course._id })}
-            onPress={() => navigation.navigate("Course", { id: course._id })}
-            id={course._id}
-            title={course.name}
-            description={
-              course.description.length > 125
-                ? course.description.substring(0, 125) + "\n..."
-                : course.description
-            }
-          />
-        ))}
+        {isLoading ? (
+          <Spinner visible={isLoading} textContent={"Loading..."} />
+        ) : (
+          courses.map((course) => (
+            <Card
+              onPress={() => navigation.navigate("Course", { id: course._id })}
+              id={course._id}
+              title={course.name}
+              description={
+                course.description.length > 125
+                  ? course.description.substring(0, 125) + "\n..."
+                  : course.description
+              }
+            />
+          ))
+        )}
         {/* <TouchableOpacity
           style={{
             borderRadius: 20,

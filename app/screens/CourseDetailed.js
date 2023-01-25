@@ -10,6 +10,8 @@ import {
 import { Video } from "expo-av";
 import { ScrollView } from "react-native-gesture-handler";
 import axios from "axios";
+import Spinner from "react-native-loading-spinner-overlay";
+import { getToken } from "../config/store";
 
 import ContentPoints from "../components/ContentPoints";
 import PurchaseButton from "../components/PurchaseButton";
@@ -18,94 +20,129 @@ const { width, height } = Dimensions.get("window");
 
 function CourseDetailed({ route }) {
   const [course, setCourse] = useState();
+  const [isLoading, isSetLoading] = useState(true);
+  const [enrollLoading, setEnrollLoading] = useState(false);
   useEffect(() => {
     axios
       .get(
-        `https://elearning-v6l2.onrender.com/api/v1/course/${route.params.id}`
+        `https://elearning-v6l2.onrender.com/api/v1/course/course/${route.params.id}`
       )
       .then((res) => {
         setCourse(res.data.data);
+        isSetLoading(false);
         console.log("datas", course);
       })
       .catch((e) => console.log(e));
   }, []);
 
+  async function enrollCourse() {
+    setEnrollLoading(true);
+    const token = await getToken();
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    console.log(token);
+    axios
+      .post(
+        `https://elearning-v6l2.onrender.com/api/v1/user/enroll/${route.params.id}`,
+        null,
+        config
+      )
+      .then((res) => {
+        console.log("successfully enrolled");
+        setEnrollLoading(false);
+      })
+      .catch((e) => console.log(e));
+  }
+
   console.log(route.params.id);
   return (
     <View style={styles.container}>
       <ScrollView>
-        <StatusBar backgroundColor='#f58084' />
-        <Video
-          source={require("../assets/maintro.mp4")}
-          rate={1.0}
-          isMuted={false}
-          resizeMode='cover'
-          shouldPlay={true}
-          isLooping={false}
-          useNativeControls
-          style={styles.video}
-        />
-        <Text style={styles.title}>{course.name}</Text>
+        {isLoading ? (
+          <Spinner visible={isLoading} textContent={"Loading..."} />
+        ) : (
+          <View>
+            <StatusBar backgroundColor='#f58084' />
+            <Video
+              source={require("../assets/maintro.mp4")}
+              rate={1.0}
+              isMuted={false}
+              resizeMode='cover'
+              shouldPlay={true}
+              isLooping={false}
+              useNativeControls
+              style={styles.video}
+            />
+            <Text style={styles.title}>{course.name}</Text>
 
-        <Text style={styles.description}>{course.description}</Text>
+            <Text style={styles.description}>{course.description}</Text>
 
-        <Text style={styles.contents}>What You'l Learn...</Text>
-        <ContentPoints description={"chapter 1"} icon={"check"} />
-        <ContentPoints description={"chapter 2"} icon={"check"} />
-        <ContentPoints description={"chapter 3"} icon={"check"} />
-        <ContentPoints description={"chapter 4"} icon={"check"} />
-        <ContentPoints description={"chapter 5"} icon={"check"} />
-        <ContentPoints description={"chapter 6"} icon={"check"} />
+            <Text style={styles.contents}>What You'l Learn...</Text>
+            <ContentPoints description={"chapter 1"} icon={"check"} />
+            <ContentPoints description={"chapter 2"} icon={"check"} />
+            <ContentPoints description={"chapter 3"} icon={"check"} />
+            <ContentPoints description={"chapter 4"} icon={"check"} />
+            <ContentPoints description={"chapter 5"} icon={"check"} />
+            <ContentPoints description={"chapter 6"} icon={"check"} />
 
-        <View style={{ marginTop: 20 }}>
-          <Text style={styles.contents}>Course Curriculum</Text>
-          <ContentPoints
-            description={"Getting Started (32m)"}
-            icon={"video-camera"}
-          />
-          <ContentPoints
-            description={"Primitive Types (34m)"}
-            icon={"video-camera"}
-          />
-          <ContentPoints
-            description={"Control Flow (37m)"}
-            icon={"video-camera"}
-          />
-          <ContentPoints
-            description={"Control Flow (37m)"}
-            icon={"video-camera"}
-          />
-          <ContentPoints
-            description={"Control Flow (37m)"}
-            icon={"video-camera"}
-          />
-        </View>
+            <View style={{ marginTop: 20 }}>
+              <Text style={styles.contents}>Course Curriculum</Text>
+              <ContentPoints
+                description={"Getting Started (32m)"}
+                icon={"video-camera"}
+              />
+              <ContentPoints
+                description={"Primitive Types (34m)"}
+                icon={"video-camera"}
+              />
+              <ContentPoints
+                description={"Control Flow (37m)"}
+                icon={"video-camera"}
+              />
+              <ContentPoints
+                description={"Control Flow (37m)"}
+                icon={"video-camera"}
+              />
+              <ContentPoints
+                description={"Control Flow (37m)"}
+                icon={"video-camera"}
+              />
+            </View>
 
-        <View style={{ marginTop: 20 }}>
-          <Text style={styles.contents}>
-            By the end of this course, you'll be able to…
-          </Text>
-          <ContentPoints description={"chapter 1"} icon={"check"} />
-          <ContentPoints description={"chapter 1"} icon={"check"} />
-          <ContentPoints description={"chapter 1"} icon={"check"} />
-          <ContentPoints description={"chapter 1"} icon={"check"} />
-        </View>
+            <View style={{ marginTop: 20 }}>
+              <Text style={styles.contents}>
+                By the end of this course, you'll be able to…
+              </Text>
+              <ContentPoints description={"chapter 1"} icon={"check"} />
+              <ContentPoints description={"chapter 1"} icon={"check"} />
+              <ContentPoints description={"chapter 1"} icon={"check"} />
+              <ContentPoints description={"chapter 1"} icon={"check"} />
+            </View>
 
-        <View style={styles.moneyback}>
-          <Text style={styles.moneybackTitle}>30-Day Money-Back Guarantee</Text>
-          <Text style={styles.moneybackSubtitle}>Try it risk-free</Text>
-          <Text style={styles.moneybackDescription}>
-            I’m confident you’ll get everything you need from this course and be
-            100% satisfied. But in the unlikely event you decide it’s not for
-            you just ask for a refund any time during the first 30 days and
-            you’ll get your money back with no questions asked.
-          </Text>
-          <Image
-            source={require("../assets/Guaranteed.png")}
-            style={styles.moneybacklogo}
-          />
-        </View>
-        <PurchaseButton title={"Enroll Now"} />
+            <View style={styles.moneyback}>
+              <Text style={styles.moneybackTitle}>
+                30-Day Money-Back Guarantee
+              </Text>
+              <Text style={styles.moneybackSubtitle}>Try it risk-free</Text>
+              <Text style={styles.moneybackDescription}>
+                I’m confident you’ll get everything you need from this course
+                and be 100% satisfied. But in the unlikely event you decide it’s
+                not for you just ask for a refund any time during the first 30
+                days and you’ll get your money back with no questions asked.
+              </Text>
+              <Image
+                source={require("../assets/Guaranteed.png")}
+                style={styles.moneybacklogo}
+              />
+            </View>
+            <PurchaseButton
+              title={"Enroll Now"}
+              onPress={() => enrollCourse()}
+              loading={enrollLoading}
+            />
+          </View>
+        )}
       </ScrollView>
     </View>
   );
