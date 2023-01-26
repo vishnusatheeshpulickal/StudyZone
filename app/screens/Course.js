@@ -12,7 +12,7 @@ import Spinner from "react-native-loading-spinner-overlay";
 
 import Chapters from "./Chapters";
 
-function Course({ route }) {
+function Course({ route, navigation }) {
   const [course, setCourse] = useState();
   const [isLoading, isSetLoading] = useState(true);
   const [enrollLoading, setEnrollLoading] = useState(false);
@@ -47,7 +47,7 @@ function Course({ route }) {
             }}
           >
             <TouchableOpacity
-              onPress={() => console.log("pressed!")}
+              onPress={() => navigation.goBack()}
               style={{
                 paddingHorizontal: 10,
                 paddingVertical: 13,
@@ -95,7 +95,7 @@ function Course({ route }) {
               textAlign: "center",
             }}
           >
-            {/* {course.name} */}
+            {course.name}
           </Text>
           <Modalize
             handleStyle={{
@@ -138,35 +138,22 @@ function Course({ route }) {
           </View>
         </View> */}
             <View style={{ marginTop: 25 }}>
-              <Chapters
-                num={1}
-                color='#fde6e6'
-                percent='25'
-                duration='2 hrs'
-                title='introduction'
-                onPress={() => console.log("chapter 1")}
-              />
-              <Chapters
-                num={2}
-                color='#f9e1fc'
-                percent='25'
-                duration='2 hrs'
-                title='introduction'
-              />
-              <Chapters
-                num={3}
-                color='#fde6e6'
-                percent='25'
-                duration='2 hrs'
-                title='introduction'
-              />
-              <Chapters
-                num={4}
-                color='#fde6e6'
-                percent='25'
-                duration='2 hrs'
-                title='introduction'
-              />
+              {course.materials.map((chapter) => (
+                <Chapters
+                  key={chapter._id}
+                  num={chapter.mId}
+                  color='#fde6e6'
+                  percent='25'
+                  duration='2 hrs'
+                  title={chapter.title}
+                  onPress={() =>
+                    navigation.navigate("Tutorial", {
+                      id: route.params.id,
+                      chapterId: chapter._id,
+                    })
+                  }
+                />
+              ))}
             </View>
             <View
               style={{

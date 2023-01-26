@@ -4,6 +4,32 @@ async function storeToken(token) {
   await SecureStore.setItemAsync("Token", token);
 }
 
+async function storeName(name) {
+  await SecureStore.setItemAsync("Name", name);
+}
+
+async function getName() {
+  let result = await SecureStore.getItemAsync("Name");
+  if (result) {
+    return result;
+  } else {
+    return null;
+  }
+}
+
+async function storeEmail(email) {
+  await SecureStore.setItemAsync("Email", email);
+}
+
+async function getEmail() {
+  let result = await SecureStore.getItemAsync("Email");
+  if (result) {
+    return result;
+  } else {
+    return null;
+  }
+}
+
 async function getToken() {
   let result = await SecureStore.getItemAsync("Token");
   if (result) {
@@ -22,4 +48,12 @@ async function deleteToken() {
   }
 }
 
-module.exports = { storeToken, getToken, deleteToken };
+module.exports = {
+  storeToken,
+  getToken,
+  deleteToken,
+  storeEmail,
+  getEmail,
+  storeName,
+  getName,
+};

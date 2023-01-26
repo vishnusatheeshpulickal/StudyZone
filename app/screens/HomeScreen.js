@@ -13,6 +13,7 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import Spinner from "react-native-loading-spinner-overlay";
 
 import CourseDetailed from "./CourseDetailed";
+import { getName } from "../config/store";
 
 // import ProgressCircle from "react-native-progress-circle";
 
@@ -22,10 +23,13 @@ import CourseList from "../components/CourseList";
 function HomeScreen({ navigation }) {
   const [courses, setCourses] = useState([]);
   const [isLoading, isSetLoading] = useState(true);
+  const [name, setName] = useState();
 
   // const navigation = useNavigation();
 
-  useEffect(() => {
+  useEffect(async () => {
+    const name = await getName();
+    setName(name);
     axios
       .get("https://elearning-v6l2.onrender.com/api/v1/course/allCourses")
       .then((res) => {
@@ -73,7 +77,7 @@ function HomeScreen({ navigation }) {
             fontWeight: "800",
           }}
         >
-          Welcome Back Vishnu
+          Welcome Back {name}
         </Text>
         <View
           style={{

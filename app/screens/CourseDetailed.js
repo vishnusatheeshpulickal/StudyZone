@@ -18,7 +18,7 @@ import PurchaseButton from "../components/PurchaseButton";
 
 const { width, height } = Dimensions.get("window");
 
-function CourseDetailed({ route }) {
+function CourseDetailed({ route, navigation }) {
   const [course, setCourse] = useState();
   const [isLoading, isSetLoading] = useState(true);
   const [enrollLoading, setEnrollLoading] = useState(false);
@@ -30,7 +30,6 @@ function CourseDetailed({ route }) {
       .then((res) => {
         setCourse(res.data.data);
         isSetLoading(false);
-        console.log("datas", course);
       })
       .catch((e) => console.log(e));
   }, []);
@@ -41,7 +40,6 @@ function CourseDetailed({ route }) {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    console.log(token);
     axios
       .post(
         `https://elearning-v6l2.onrender.com/api/v1/user/enroll/${route.params.id}`,
@@ -51,6 +49,7 @@ function CourseDetailed({ route }) {
       .then((res) => {
         console.log("successfully enrolled");
         setEnrollLoading(false);
+        navigation.navigate("My Courses");
       })
       .catch((e) => console.log(e));
   }

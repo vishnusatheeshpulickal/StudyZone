@@ -8,7 +8,7 @@ import Screen from "../components/Screen";
 import AppTextInput from "../components/AppTextInput";
 import AppButton from "../components/Button";
 import ErrorMessage from "../components/ErrorMessage";
-import { storeToken } from "../config/store";
+import { storeToken, storeName, storeEmail } from "../config/store";
 import SuccessScreen from "./SuccessScreen";
 
 const validationSchema = Yup.object().shape({
@@ -27,7 +27,10 @@ function LoginScreen({ navigation }) {
         password,
       })
       .then((res) => {
+        console.log(res.data);
         storeToken(res.data.token);
+        storeEmail(res.data.email);
+        storeName(res.data.name);
         navigation.navigate("Main");
         console.log(res.data);
       })
