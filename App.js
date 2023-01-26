@@ -5,17 +5,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import HomeScreen from "./app/screens/HomeScreen";
 import Courses from "./app/screens/Courses";
-// import RegisterScreen from "./app/screens/RegisterScreen";
-import VideoPage from "./app/screens/VideoPage";
-import Xd from "./app/screens/Xd.js";
+
 import WelcomeScreen from "./app/screens/WelcomeScreen";
-import CourseList from "./app/screens/CourseList";
-import Card from "./app/components/Card";
-import CourseDetailed from "./app/screens/CourseDetailed";
 import RegisterScreen from "./app/screens/RegisterScreen";
 import LoginScreen from "./app/screens/LoginScreen";
 import LoaderScreen from "./app/screens/LoaderScreen";
-import SuccessScreen from "./app/screens/SuccessScreen";
 import MainScreen from "./app/screens/MainScreen";
 import LogoutAlert from "./app/components/LogoutAlert";
 

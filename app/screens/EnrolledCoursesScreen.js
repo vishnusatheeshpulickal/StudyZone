@@ -3,10 +3,10 @@ import { View, ScrollView } from "react-native";
 import axios from "axios";
 import Spinner from "react-native-loading-spinner-overlay";
 
-import CourseList from "./CourseList";
+import CourseList from "../components/CourseList";
 import { getToken } from "../config/store";
 
-function EnrolledCoursesScreen() {
+function EnrolledCoursesScreen({ navigation }) {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(async () => {
@@ -31,7 +31,7 @@ function EnrolledCoursesScreen() {
     <View>
       <ScrollView>
         {loading ? (
-          <Spinner />
+          <Spinner visible={loading} textContent={"Loading..."} />
         ) : (
           <View>
             {courses.map((course) => (
@@ -39,6 +39,9 @@ function EnrolledCoursesScreen() {
                 title={course.courseId.name}
                 img={require("../assets/xd.png")}
                 bg='#fcf2ff'
+                onPress={() =>
+                  navigation.navigate("Course", { id: course.courseId._id })
+                }
               />
             ))}
           </View>

@@ -17,7 +17,7 @@ import CourseDetailed from "./CourseDetailed";
 // import ProgressCircle from "react-native-progress-circle";
 
 import Card from "../components/Card";
-import CourseList from "./CourseList";
+import CourseList from "../components/CourseList";
 
 function HomeScreen({ navigation }) {
   const [courses, setCourses] = useState([]);
@@ -196,7 +196,9 @@ function HomeScreen({ navigation }) {
         ) : (
           courses.map((course) => (
             <Card
-              onPress={() => navigation.navigate("Course", { id: course._id })}
+              onPress={() =>
+                navigation.navigate("Course Details", { id: course._id })
+              }
               id={course._id}
               title={course.name}
               description={

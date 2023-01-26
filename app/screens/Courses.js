@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { Modalize } from "react-native-modalize";
 
-import CourseList from "./CourseList";
+import CourseList from "../components/CourseList";
 
 function Courses() {
   // const modalRef = React.createRef();

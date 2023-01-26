@@ -11,7 +11,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 // import useNotifications from "../hooks/useNotifications";
 import HomeScreenMain from "./HomeScreenMain";
 import ProfileScreen from "./ProfileScreen";
-import CourseList from "./CourseList";
 import EnrolledCoursesScreen from "./EnrolledCoursesScreen";
 
 const Tab = createBottomTabNavigator();

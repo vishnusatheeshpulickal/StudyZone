@@ -4,7 +4,7 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 
 import HomeScreen from "./HomeScreen";
 import CourseDetailed from "./CourseDetailed";
-import EnrolledCoursesScreen from "./EnrolledCoursesScreen";
+import Course from "./Course";
 
 const HomeScreenMain = () => {
   const Stack = createNativeStackNavigator();
@@ -17,6 +17,11 @@ const HomeScreenMain = () => {
       />
       <Stack.Screen
         component={CourseDetailed}
+        name='Course Details'
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        component={Course}
         name='Course'
         options={{ headerShown: false }}
       />
