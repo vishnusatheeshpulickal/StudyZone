@@ -176,7 +176,7 @@ const ProfileScreen = ({ navigation }) => {
                 <Text style={styles.menuItemText}>Support</Text>
               </View>
             </TouchableRipple>
-            <TouchableRipple onPress={() => {}}>
+            <TouchableRipple onPress={() => navigation.navigate("Settings")}>
               <View style={styles.menuItem}>
                 <Icon name='tools' color='#FF6347' size={25} />
                 <Text style={styles.menuItemText}>Settings</Text>

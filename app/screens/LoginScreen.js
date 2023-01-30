@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { StyleSheet, Image } from "react-native";
+import { StyleSheet, Image, View } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import Toast from "react-native-toast-message";
 
 import Screen from "../components/Screen";
 import AppTextInput from "../components/AppTextInput";
@@ -18,6 +19,13 @@ const validationSchema = Yup.object().shape({
 
 function LoginScreen({ navigation }) {
   const [loading, setLoading] = useState(false);
+  const [invalidCredentials, setInvalidCredentials] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  Toast.show({
+    type: "error",
+    text1: "Invalid username or password",
+  });
 
   async function login({ email, password }) {
     setLoading(true);
@@ -32,50 +40,64 @@ function LoginScreen({ navigation }) {
         storeEmail(res.data.email);
         storeName(res.data.name);
         navigation.navigate("Main");
-        console.log(res.data);
       })
-      .catch((e) => console.log(e));
+      .catch((error) => {
+        if (error.response.status === 400) {
+          setLoading(false);
+          setInvalidCredentials(true);
+        }
+      });
   }
   return (
     <Screen style={styles.container}>
-      <Image style={styles.logo} source={require("../assets/logo.png")} />
-      <Formik
-        initialValues={{ email: "", password: "" }}
-        onSubmit={(values) => login(values)}
-        validationSchema={validationSchema}
-      >
-        {({ handleChange, handleSubmit, errors }) => (
-          <>
-            <AppTextInput
-              autoCapitalize='none'
-              icon='email'
-              keyboardType='email-address'
-              autoCorrect={false}
-              placeholder='Email'
-              onChangeText={handleChange("email")}
-              textContentType='emailAddress'
-            />
-            <ErrorMessage error={errors.email} />
-            <AppTextInput
-              autoCapitalize='none'
-              autoCorrect={false}
-              icon='lock'
-              onChangeText={handleChange("password")}
-              placeholder='Password'
-              secureTextEntry
-              textContentType='password'
-            />
-            <ErrorMessage error={errors.password} />
-            <AppButton title='Login' onPress={handleSubmit} loading={loading} />
-          </>
-        )}
-      </Formik>
+      {invalidCredentials ? <Toast position='top' topOffset={30} /> : ""}
+      {/* <Toast position='top' topOffset={10} /> */}
+      <View style={{ marginTop: 90 }}>
+        <Image style={styles.logo} source={require("../assets/logo.png")} />
+        <Formik
+          initialValues={{ email: "", password: "" }}
+          onSubmit={(values) => login(values)}
+          validationSchema={validationSchema}
+        >
+          {({ handleChange, handleSubmit, errors }) => (
+            <>
+              <AppTextInput
+                autoCapitalize='none'
+                icon='email'
+                keyboardType='email-address'
+                autoCorrect={false}
+                placeholder='Email'
+                onChangeText={handleChange("email")}
+                textContentType='emailAddress'
+              />
+              <ErrorMessage error={errors.email} />
+              <AppTextInput
+                autoCapitalize='none'
+                autoCorrect={false}
+                icon='lock'
+                onChangeText={handleChange("password")}
+                placeholder='Password'
+                secureTextEntry
+                textContentType='password'
+              />
+              <ErrorMessage error={errors.password} />
+              <AppButton
+                title='Login'
+                onPress={handleSubmit}
+                loading={loading}
+              />
+            </>
+          )}
+        </Formik>
+      </View>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { padding: 20 },
+  container: {
+    padding: 20,
+  },
   logo: {
     width: 80,
     height: 80,

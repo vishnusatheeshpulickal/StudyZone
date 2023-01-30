@@ -2,15 +2,8 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-// import AccountNavigator from "./AccountNavigator";
-// import FeedNavigator from "./FeedNavigator";
-// import ListingEditScreen from "../screens/ListingEditScreen";
-// import NewListingButton from "./NewListingButton";
-// import routes from "./routes";
-// import navigation from "./rootNavigation";
-// import useNotifications from "../hooks/useNotifications";
 import HomeScreenMain from "./HomeScreenMain";
-import ProfileScreen from "./ProfileScreen";
+import ProfileScreenMain from "./ProfileScreenMain";
 import EnrolledCoursesScreen from "./EnrolledCoursesScreen";
 
 const Tab = createBottomTabNavigator();
@@ -49,12 +42,12 @@ const AppNavigator = () => {
 
       <Tab.Screen
         name='Profile'
-        component={ProfileScreen}
+        component={ProfileScreenMain}
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name='account' color={color} size={size} />
           ),
-          //   headerShown: false,
+          // headerShown: false,
         }}
       />
       {/* <Tab.Screen
