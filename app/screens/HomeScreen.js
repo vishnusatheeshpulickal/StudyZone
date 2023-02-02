@@ -13,7 +13,7 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import Spinner from "react-native-loading-spinner-overlay";
 
 import CourseDetailed from "./CourseDetailed";
-import { getName } from "../config/store";
+import { getName, getToken } from "../config/store";
 
 // import ProgressCircle from "react-native-progress-circle";
 
@@ -24,6 +24,7 @@ function HomeScreen({ navigation }) {
   const [courses, setCourses] = useState([]);
   const [isLoading, isSetLoading] = useState(true);
   const [name, setName] = useState();
+  const [enrolled, setEnrolled] = useState([]);
 
   // const navigation = useNavigation();
 
@@ -38,6 +39,26 @@ function HomeScreen({ navigation }) {
         console.log(courses);
       })
       .catch((e) => console.log(e));
+
+    const enrolled = async () => {
+      const token = await getToken();
+      isSetLoading(true);
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      await axios
+        .get(
+          "https://elearning-v6l2.onrender.com/api/v1/user/enrolledcourses",
+          config
+        )
+        .then((res) => {
+          console.log("successfully fetched data");
+          isSetLoading(false);
+          setEnrolled(res.data.data.courses);
+        })
+        .catch((err) => console.log(err));
+    };
+    enrolled();
   }, []);
 
   return (
@@ -151,37 +172,34 @@ function HomeScreen({ navigation }) {
             style={{ marginLeft: -80, marginTop: 35 }}
           />
         </View>
-        <View>
-          <Text
-            style={{
-              color: "#345c74",
-              fontSize: 20,
-              paddingHorizontal: 20,
-              marginTop: 20,
-              marginBottom: 10,
-              fontWeight: "800",
-            }}
-          >
-            Courses in progress
-          </Text>
-
-          <CourseList
-            img={require("../assets/sketch.png")}
-            title='Sketch'
-            bg='#fef8e3'
-          />
-          <CourseList
-            img={require("../assets/ae.png")}
-            title='After Effect'
-            bg='#fcf2ff'
-          />
-
-          <CourseList
-            img={require("../assets/ae.png")}
-            title='After Effect'
-            bg='#fcf2ff'
-          />
-        </View>
+        {enrolled ? (
+          <View>
+            <Text
+              style={{
+                color: "#345c74",
+                fontSize: 20,
+                paddingHorizontal: 20,
+                marginTop: 20,
+                marginBottom: 10,
+                fontWeight: "800",
+              }}
+            >
+              Courses in progress
+            </Text>
+            {enrolled.slice(0, 3).map((c) => (
+              <CourseList
+                img={require("../assets/sketch.png")}
+                title={c.courseId.name}
+                bg='#fef8e3'
+                onPress={() =>
+                  navigation.navigate("Course", { id: c.courseId._id })
+                }
+              />
+            ))}
+          </View>
+        ) : (
+          ""
+        )}
 
         <Text
           style={{
