@@ -11,8 +11,9 @@ import { Video } from "expo-av";
 import { ScrollView } from "react-native-gesture-handler";
 import axios from "axios";
 import Spinner from "react-native-loading-spinner-overlay";
-import { getToken } from "../config/store";
+import RazorpayCheckout from "react-native-razorpay";
 
+import { getToken } from "../config/store";
 import ContentPoints from "../components/ContentPoints";
 import PurchaseButton from "../components/PurchaseButton";
 
@@ -40,6 +41,45 @@ function CourseDetailed({ route, navigation }) {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
+
+    // await axios
+    //   .post(
+    //     `https://elearning-v6l2.onrender.com/api/v1/user/pay`,
+    //     { amount: course.price },
+    //     config
+    //   )
+    //   .then((res) => {
+    //     console.log("successfully created order");
+    //     orderId = res.id;
+    //     setEnrollLoading(false);
+    //   })
+    //   .catch((e) => console.log(e));
+
+    // var options = {
+    //   description: "Credits towards consultation",
+    //   image: "https://i.imgur.com/3g7nmJC.png",
+    //   currency: "INR",
+    //   key: "rzp_test_xKzrW9GCWa2N5D",
+    //   amount: "5000",
+    //   name: "foo",
+    //   order_id: orderId,
+    //   prefill: {
+    //     email: "void@razorpay.com",
+    //     contact: "9191919191",
+    //     name: "Razorpay Software",
+    //   },
+    //   theme: { color: "#F37254" },
+    // };
+    // await RazorpayCheckout.open(options)
+    //   .then((data) => {
+    //     // handle success
+    //     alert(`Success: ${data.razorpay_payment_id}`);
+    //   })
+    //   .catch((error) => {
+    //     // handle failure
+    //     alert(`Error: ${error.code} | ${error.description}`);
+    //   });
+
     axios
       .post(
         `https://elearning-v6l2.onrender.com/api/v1/user/enroll/${route.params.id}`,

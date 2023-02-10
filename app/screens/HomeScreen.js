@@ -147,7 +147,7 @@ function HomeScreen({ navigation }) {
             >
               Start Learning new staff
             </Text>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               onPress={() => console.log("pressed")}
               style={{
                 flexDirection: "row",
@@ -165,7 +165,7 @@ function HomeScreen({ navigation }) {
                 source={require("../assets/a3.png")}
                 style={{ marginLeft: 20, width: 8, height: 8 }}
               />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
           <Image
             source={require("../assets/undraw.png")}

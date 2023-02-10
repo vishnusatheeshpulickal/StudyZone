@@ -51,19 +51,6 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
-      {/* <MainScreen /> */}
-      {/* <SuccessScreen /> */}
-      {/* {<Courses />} */}
-      {/* <RegisterScreen /> */}
-      {/* <LoginScreen /> */}
-      {/* <LoaderScreen /> */}
-      {/* <LoaderScreen /> */}
-      {/* <VideoPage /> */}
-      {/* <Xd /> */}
-      {/* <HomeScreen /> */}
-      {/* <CourseList /> */}
-      {/* <CourseDetailed /> */}
-      {/* <RegisterScreen /> */}
     </SafeAreaView>
   );
 }

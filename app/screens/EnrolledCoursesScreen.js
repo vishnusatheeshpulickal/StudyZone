@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, RefreshControl } from "react-native";
 import axios from "axios";
 import Spinner from "react-native-loading-spinner-overlay";
 
@@ -9,6 +9,17 @@ import { getToken } from "../config/store";
 function EnrolledCoursesScreen({ navigation }) {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = () => {
+    setRefreshing(true);
+    setTimeout(() => {
+      start();
+      // changeColor("green");
+      setRefreshing(false);
+    }, 2000);
+  };
+
   useEffect(async () => {
     const token = await getToken();
     const config = {
@@ -27,9 +38,31 @@ function EnrolledCoursesScreen({ navigation }) {
       .catch((err) => console.log(err));
   }, []);
 
+  const start = async () => {
+    const token = await getToken();
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    await axios
+      .get(
+        "https://elearning-v6l2.onrender.com/api/v1/user/enrolledcourses",
+        config
+      )
+      .then((res) => {
+        console.log("successfully fetched data");
+        setLoading(false);
+        setCourses(res.data.data.courses);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <View>
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
         {loading ? (
           <Spinner visible={loading} textContent={"Loading..."} />
         ) : (
