@@ -158,19 +158,19 @@ const ProfileScreen = ({ navigation }) => {
             <Text style={styles.menuItemText}>My Courses</Text>
           </View>
         </TouchableRipple> */}
-            <TouchableRipple onPress={() => {}}>
+            {/* <TouchableRipple onPress={() => {}}>
               <View style={styles.menuItem}>
                 <Icon name='medal' color='#FF6347' size={25} />
                 <Text style={styles.menuItemText}>My Certificate</Text>
               </View>
-            </TouchableRipple>
-            <TouchableRipple onPress={() => {}}>
+            </TouchableRipple> */}
+            {/* <TouchableRipple onPress={() => {}}>
               <View style={styles.menuItem}>
                 <Icon name='credit-card' color='#FF6347' size={25} />
                 <Text style={styles.menuItemText}>Payments</Text>
               </View>
-            </TouchableRipple>
-            <TouchableRipple onPress={() => {}}>
+            </TouchableRipple> */}
+            <TouchableRipple onPress={() => navigation.navigate("Support")}>
               <View style={styles.menuItem}>
                 <Icon name='account-check-outline' color='#FF6347' size={25} />
                 <Text style={styles.menuItemText}>Support</Text>

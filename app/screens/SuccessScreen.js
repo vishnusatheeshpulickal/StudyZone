@@ -11,7 +11,7 @@ import {
   Easing,
 } from "react-native";
 
-const SuccessScreen = () => {
+const SuccessScreen = ({ navigation }) => {
   const [fadeAnim] = useState(new Animated.Value(0));
   const [scaleAnim] = useState(new Animated.Value(1));
 
@@ -33,6 +33,8 @@ const SuccessScreen = () => {
         easing: Easing.linear,
       }),
     ]).start();
+
+    setTimeout(() => navigation.navigate("Login"), 19000);
   }, []);
 
   const opacity = fadeAnim;

@@ -4,6 +4,7 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 
 import ProfileScreen from "./ProfileScreen";
 import SettingsScreen from "./SettingsScreen";
+import SupportScreen from "./SupportScreen";
 
 const ProfileScreenMain = () => {
   const Stack = createNativeStackNavigator();
@@ -17,6 +18,11 @@ const ProfileScreenMain = () => {
       <Stack.Screen
         component={SettingsScreen}
         name='Settings'
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        component={SupportScreen}
+        name='Support'
         options={{ headerShown: true }}
       />
       {/* <Stack.Screen

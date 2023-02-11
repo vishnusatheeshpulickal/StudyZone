@@ -12,6 +12,7 @@ import LoginScreen from "./app/screens/LoginScreen";
 import LoaderScreen from "./app/screens/LoaderScreen";
 import MainScreen from "./app/screens/MainScreen";
 import LogoutAlert from "./app/components/LogoutAlert";
+import SuccessScreen from "./app/screens/SuccessScreen";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -44,6 +45,13 @@ export default function App() {
             component={RegisterScreen}
             name='Register'
           />
+
+          <Stack.Screen
+            options={{ headerShown: false }}
+            component={SuccessScreen}
+            name='Success'
+          />
+
           <Stack.Screen
             options={{ headerShown: false }}
             component={LogoutAlert}

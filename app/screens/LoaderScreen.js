@@ -14,13 +14,13 @@ const LoadingScreen = ({ navigation }) => {
         .then((res) => {
           console.log("Started!");
           setIsLoading(false);
-          const token = getToken();
-          if (token == null) return navigation.navigate("Welcome");
-          else return navigation.navigate("Main");
         })
         .catch((err) => console.log(err));
     }
     start();
+    const token = await getToken();
+    if (token == null) return navigation.navigate("Welcome");
+    else return navigation.navigate("Main");
     // setIsLoading(false);
   }, []);
 

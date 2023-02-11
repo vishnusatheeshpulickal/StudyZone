@@ -16,7 +16,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().label("Password").min(4),
 });
 
-function RegisterScreen() {
+function RegisterScreen({ navigation }) {
   const [loading, setLoading] = useState(false);
 
   async function register({ name, email, password }) {
@@ -28,8 +28,8 @@ function RegisterScreen() {
         password,
       })
       .then((res) => {
-        if (res.status === 200) return <SuccessScreen />;
-        // console.log(res.status);
+        console.log(res.status);
+        if (res.status === 200) return navigation.navigate("Success");
       })
       .catch((e) => console.log(e));
   }
