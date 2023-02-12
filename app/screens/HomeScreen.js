@@ -5,8 +5,10 @@ import {
   ImageBackground,
   TouchableOpacity,
   Image,
+  TextInput,
+  RefreshControl,
 } from "react-native";
-import { ScrollView, TextInput } from "react-native-gesture-handler";
+import { ScrollView } from "react-native-gesture-handler";
 import axios from "axios";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
@@ -25,6 +27,31 @@ function HomeScreen({ navigation }) {
   const [isLoading, isSetLoading] = useState(true);
   const [name, setName] = useState();
   const [enrolled, setEnrolled] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [result, setResult] = useState([]);
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  // const onRefresh = () => {
+  //   setRefreshing(true);
+  //   setTimeout(() => {
+  //     start();
+  //     // changeColor("green");
+  //     setRefreshing(false);
+  //   }, 2000);
+  // };
+
+  const search = () => {
+    isSetLoading(true);
+    axios
+      .post(`https://elearning-v6l2.onrender.com/api/v1/course/coursesearch`, {
+        search: searchText,
+      })
+      .then((res) => {
+        setResult(res.data.data);
+        isSetLoading(false);
+      })
+      .catch((err) => console.log(err));
+  };
 
   // const navigation = useNavigation();
 
@@ -66,7 +93,11 @@ function HomeScreen({ navigation }) {
       source={require("../assets/Home.png")}
       style={{ width: "100%", height: "100%" }}
     >
-      <ScrollView>
+      <ScrollView
+      // refreshControl={
+      //   <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      // }
+      >
         <View
           style={{
             width: "100%",
@@ -74,7 +105,7 @@ function HomeScreen({ navigation }) {
             paddingHorizontal: 20,
           }}
         >
-          <View
+          {/* <View
             style={{
               paddingHorizontal: 10,
               paddingVertical: 12,
@@ -87,7 +118,7 @@ function HomeScreen({ navigation }) {
               source={require("../assets/hum.png")}
               style={{ height: 15, width: 20 }}
             />
-          </View>
+          </View> */}
         </View>
         <Text
           style={{
@@ -119,11 +150,14 @@ function HomeScreen({ navigation }) {
               width: 280,
               paddingHorizontal: 12,
             }}
+            onChangeText={(text) => setSearchText(text)}
           />
-          <Image
-            source={require("../assets/sear.png")}
-            style={{ height: 14, width: 14 }}
-          />
+          <TouchableOpacity onPress={search}>
+            <Image
+              source={require("../assets/sear.png")}
+              style={{ height: 14, width: 14 }}
+            />
+          </TouchableOpacity>
         </View>
         <View
           style={{
@@ -172,7 +206,49 @@ function HomeScreen({ navigation }) {
             style={{ marginLeft: -80, marginTop: 35 }}
           />
         </View>
-        {enrolled ? (
+        {result.length > 0 ? (
+          <View>
+            <Text
+              style={{
+                color: "#345c74",
+                fontSize: 20,
+                paddingHorizontal: 20,
+                marginTop: 20,
+                marginBottom: 10,
+                fontWeight: "800",
+              }}
+            >
+              Search Results
+            </Text>
+          </View>
+        ) : (
+          ""
+        )}
+        {result.length > 0
+          ? result.map((c) => (
+              <View>
+                <Card
+                  onPress={() =>
+                    navigation.navigate("Course Details", { id: c._id })
+                  }
+                  id={c._id}
+                  title={c.name}
+                  description={
+                    c.description.length > 125
+                      ? c.description.substring(0, 125) + "\n..."
+                      : c.description
+                  }
+                  banner={
+                    c.courseBanner
+                      ? c.courseBanner
+                      : "https://images.pexels.com/photos/4144294/pexels-photo-4144294.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  }
+                />
+              </View>
+            ))
+          : ""}
+
+        {enrolled.length > 0 ? (
           <View>
             <Text
               style={{
@@ -190,6 +266,8 @@ function HomeScreen({ navigation }) {
               <CourseList
                 img={require("../assets/sketch.png")}
                 title={c.courseId.name}
+                duration={c.courseId.courseTime}
+                lessons={c.courseId.lessons}
                 bg='#fef8e3'
                 onPress={() =>
                   navigation.navigate("Course", { id: c.courseId._id })
@@ -227,6 +305,11 @@ function HomeScreen({ navigation }) {
                 course.description.length > 125
                   ? course.description.substring(0, 125) + "\n..."
                   : course.description
+              }
+              banner={
+                course.courseBanner
+                  ? course.courseBanner
+                  : "https://images.pexels.com/photos/4144294/pexels-photo-4144294.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               }
             />
           ))

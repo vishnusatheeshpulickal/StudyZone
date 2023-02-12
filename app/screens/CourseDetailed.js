@@ -104,7 +104,7 @@ function CourseDetailed({ route, navigation }) {
           <View>
             <StatusBar backgroundColor='#f58084' />
             <Video
-              source={{ uri: "https://www.youtube.com/watch?v=QXeEoD0pB3E" }}
+              source={{ uri: course.intro }}
               rate={1.0}
               isMuted={false}
               resizeMode='cover'

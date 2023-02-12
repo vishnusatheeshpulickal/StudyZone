@@ -5,13 +5,13 @@ import AppText from "../components/AppText";
 import PurchaseButton from "../components/PurchaseButton";
 import ViewButton from "../components/ViewButton";
 
-function Card({ title, price, description, image, id, onPress }) {
+function Card({ title, price, description, image, id, onPress, banner }) {
   return (
     <View style={styles.container}>
-      <Image source={require("../assets/course.png")} style={styles.image} />
+      <Image source={{ uri: banner }} style={styles.image} />
       <AppText style={styles.title}>{title}</AppText>
       <AppText style={styles.description}>{description}</AppText>
-      <AppText style={styles.price}>Rs. 300</AppText>
+      {/* <AppText style={styles.price}>Rs. 300</AppText> */}
       <ViewButton title='View' onPress={onPress} />
     </View>
   );

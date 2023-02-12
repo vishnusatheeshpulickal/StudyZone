@@ -44,7 +44,7 @@ function VideoPage({ route }) {
           <StatusBar backgroundColor='#f58084' />
           <Video
             source={{
-              uri: "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-webm-file.webm",
+              uri: course.videoLink,
             }}
             rate={1.0}
             isMuted={false}
@@ -55,10 +55,10 @@ function VideoPage({ route }) {
             style={styles.video}
           />
           <Chapters
-            num={1}
+            num={course.mId}
             color='#fde6e6'
             percent='25'
-            duration='2 hrs'
+            duration={course.courseLength + " Minutes"}
             title={course.title}
           />
           <Text
@@ -69,9 +69,9 @@ function VideoPage({ route }) {
               paddingRight: 35,
             }}
           >
-            User experience
+            {course.description}
           </Text>
-          <View
+          {/* <View
             style={{
               flexDirection: "row",
               paddingVertical: 5,
@@ -88,7 +88,7 @@ function VideoPage({ route }) {
               Read more
             </Text>
             <Image source={require("../assets/a3.png")} />
-          </View>
+          </View> */}
         </View>
       )}
     </View>

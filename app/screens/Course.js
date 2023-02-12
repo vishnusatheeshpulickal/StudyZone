@@ -61,7 +61,7 @@ function Course({ route, navigation }) {
                 style={{ height: 15, width: 20 }}
               />
             </TouchableOpacity>
-            <View
+            {/* <View
               style={{
                 paddingHorizontal: 10,
                 paddingVertical: 13,
@@ -75,9 +75,9 @@ function Course({ route, navigation }) {
                 source={require("../assets/hum.png")}
                 style={{ height: 15, width: 20 }}
               />
-            </View>
+            </View> */}
           </View>
-          <Image
+          {/* <Image
             source={require("../assets/xd.png")}
             style={{
               height: 35,
@@ -85,7 +85,7 @@ function Course({ route, navigation }) {
               alignSelf: "center",
               marginTop: 20,
             }}
-          />
+          /> */}
           <Text
             style={{
               color: "#fff",
@@ -144,7 +144,7 @@ function Course({ route, navigation }) {
                   num={chapter.mId}
                   color='#fde6e6'
                   percent='25'
-                  duration='2 hrs'
+                  duration={chapter.courseLength + " Minutes"}
                   title={chapter.title}
                   onPress={() =>
                     navigation.navigate("Tutorial", {
@@ -155,7 +155,7 @@ function Course({ route, navigation }) {
                 />
               ))}
             </View>
-            <View
+            {/* <View
               style={{
                 flexDirection: "row",
                 paddingVertical: 5,
@@ -171,7 +171,7 @@ function Course({ route, navigation }) {
                 Resume last lession
               </Text>
               <Image source={require("../assets/a2.png")} />
-            </View>
+            </View> */}
           </Modalize>
         </ImageBackground>
       )}

@@ -10,6 +10,7 @@ function EnrolledCoursesScreen({ navigation }) {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = React.useState(false);
+  let link = "";
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -70,8 +71,11 @@ function EnrolledCoursesScreen({ navigation }) {
             {courses.map((course) => (
               <CourseList
                 title={course.courseId.name}
-                img={require("../assets/xd.png")}
+                img={course.courseId.courseLogo}
+                data={course.courseId}
                 bg='#fcf2ff'
+                duration={course.courseId.courseTime}
+                lessons={course.courseId.lessons}
                 onPress={() =>
                   navigation.navigate("Course", { id: course.courseId._id })
                 }

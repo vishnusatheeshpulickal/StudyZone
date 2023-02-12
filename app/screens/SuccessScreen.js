@@ -34,7 +34,7 @@ const SuccessScreen = ({ navigation }) => {
       }),
     ]).start();
 
-    setTimeout(() => navigation.navigate("Login"), 19000);
+    setTimeout(() => navigation.navigate("Login"), 1900);
   }, []);
 
   const opacity = fadeAnim;

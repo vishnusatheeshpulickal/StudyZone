@@ -1,7 +1,8 @@
 import React from "react";
 import { Text, View, Image, TouchableOpacity } from "react-native";
 
-function CourseList({ img, title, bg, onPress }) {
+function CourseList({ img, title, bg, onPress, duration, lessons, data }) {
+  console.log("img", data);
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -15,7 +16,12 @@ function CourseList({ img, title, bg, onPress }) {
         marginTop: 10,
       }}
     >
-      <Image source={img} style={{ width: 40, height: 40 }} />
+      {/* <Image
+        source={{
+          uri: img,
+        }}
+        style={{ width: 40, height: 40 }}
+      /> */}
       <View>
         <Text
           style={{
@@ -28,10 +34,10 @@ function CourseList({ img, title, bg, onPress }) {
           {title}
         </Text>
         <Text style={{ color: "#f58084", fontSize: 12, paddingHorizontal: 20 }}>
-          10 hours, 19 lessons
+          {duration} minutes, {lessons} lessons
         </Text>
       </View>
-      <Text
+      {/* <Text
         style={{
           color: "#345c74",
           fontSize: 13,
@@ -40,7 +46,7 @@ function CourseList({ img, title, bg, onPress }) {
         }}
       >
         25%
-      </Text>
+      </Text> */}
       {/* progress */}
     </TouchableOpacity>
   );

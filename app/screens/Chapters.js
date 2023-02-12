@@ -39,7 +39,7 @@ function Chapters({ title, duration, percent, color, onPress, num }) {
         </Text>
       </View>
       <Text style={{ color: "#345c74", fontSize: 13, width: 50 }}>
-        {percent} %
+        {/* {percent} % */}
       </Text>
     </TouchableOpacity>
   );

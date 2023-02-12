@@ -2,6 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, SafeAreaView } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import axios from "axios";
 
 import HomeScreen from "./app/screens/HomeScreen";
 import Courses from "./app/screens/Courses";
@@ -13,6 +14,15 @@ import LoaderScreen from "./app/screens/LoaderScreen";
 import MainScreen from "./app/screens/MainScreen";
 import LogoutAlert from "./app/components/LogoutAlert";
 import SuccessScreen from "./app/screens/SuccessScreen";
+
+const instance = axios.create({
+  baseURL: "",
+  withCredentials: false,
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+  },
+});
 
 export default function App() {
   const Stack = createNativeStackNavigator();

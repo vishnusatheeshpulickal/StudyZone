@@ -88,7 +88,7 @@ const ProfileScreen = ({ navigation }) => {
             <View style={{ flexDirection: "row", marginTop: 15 }}>
               <Avatar.Image
                 source={{
-                  uri: "",
+                  uri: "https://res.cloudinary.com/daemiedup/image/upload/v1676138007/3135715-removebg-preview_yyack2.png",
                 }}
                 size={80}
               />
