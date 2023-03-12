@@ -14,7 +14,7 @@ const AppNavigator = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name='HomeScreen'
+        name='Home'
         component={HomeScreenMain}
         options={{
           tabBarIcon: ({ color, size }) => (

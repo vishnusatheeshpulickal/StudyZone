@@ -6,6 +6,7 @@ import HomeScreen from "./HomeScreen";
 import CourseDetailed from "./CourseDetailed";
 import Course from "./Course";
 import VideoPage from "./VideoPage";
+import QuizScreen from "./QuizScreen";
 
 const HomeScreenMain = () => {
   const Stack = createNativeStackNavigator();
@@ -24,6 +25,11 @@ const HomeScreenMain = () => {
       <Stack.Screen
         component={Course}
         name='Course'
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        component={QuizScreen}
+        name='Quiz'
         options={{ headerShown: false }}
       />
       <Stack.Screen

@@ -155,23 +155,33 @@ function Course({ route, navigation }) {
                 />
               ))}
             </View>
-            {/* <View
-              style={{
-                flexDirection: "row",
-                paddingVertical: 5,
-                backgroundColor: "#fff2f2",
-                marginHorizontal: 20,
-                paddingVertical: 15,
-                alignItems: "center",
-                borderRadius: 10,
-                justifyContent: "center",
-              }}
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("Quiz", {
+                  id: route.params.id,
+                })
+              }
             >
-              <Text style={{ color: "#f58084", fontSize: 13, marginRight: 50 }}>
-                Resume last lession
-              </Text>
-              <Image source={require("../assets/a2.png")} />
-            </View> */}
+              <View
+                style={{
+                  flexDirection: "row",
+                  paddingVertical: 5,
+                  backgroundColor: "#fff2f2",
+                  marginHorizontal: 20,
+                  paddingVertical: 15,
+                  alignItems: "center",
+                  borderRadius: 10,
+                  justifyContent: "center",
+                }}
+              >
+                <Text
+                  style={{ color: "#f58084", fontSize: 13, marginRight: 50 }}
+                >
+                  Take a Quiz
+                </Text>
+                <Image source={require("../assets/a2.png")} />
+              </View>
+            </TouchableOpacity>
           </Modalize>
         </ImageBackground>
       )}
